@@ -1,0 +1,10 @@
+<!doctype html><meta charset="utf-8"><meta name="referrer" content="no-referrer"><title>Tesla authorization code</title>
+<style>body{font-family:sans-serif;max-width:40em;margin:3em auto}code{display:block;word-break:break-all;background:#eee;padding:1em}</style>
+<h1>Tesla authorization code</h1><div id="o"></div>
+<script>
+const p=new URLSearchParams(location.search),c=p.get("code"),e=p.get("error"),o=document.getElementById("o");
+if(c){o.innerHTML='<p>Copy this code into the secure prompt now (it expires within minutes):</p><code id="c"></code><p>State: <span id="s"></span></p><button id="b">Copy code</button>';
+document.getElementById("c").textContent=c;document.getElementById("s").textContent=p.get("state")||"";
+document.getElementById("b").onclick=()=>navigator.clipboard.writeText(c).then(()=>{document.getElementById("b").textContent="Copied ✓"});}
+else o.textContent=e?("Error: "+e+" "+(p.get("error_description")||"")):"No code in URL.";
+</script>
